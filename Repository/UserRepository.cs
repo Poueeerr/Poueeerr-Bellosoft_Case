@@ -24,7 +24,7 @@ public class UserRepository : IUserRepository
 
     public async Task<UserModel?> FindByEmail(string email)
     {
-        return await _context.Users.AsNoTracking().FirstOrDefaultAsync(i => i.Email == email);
+        return await _context.Users.FirstOrDefaultAsync(i => i.Email == email);
     }
 
     public async Task<UserModel> Insert(UserModel model)

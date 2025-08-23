@@ -1,19 +1,18 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Studying.Models;
 
 namespace Studying.Services
 {
     public class HasherService
     {
-        private readonly PasswordHasher<object> _hasher = new();
-        
-        public string HashPassword(string password)
+        private readonly PasswordHasher<UserModel> _hasher = new();
+        public string HashPassword(UserModel user, string password)
         {
-            return _hasher.HashPassword(null!, password);
+            return _hasher.HashPassword(user, password);
         }
-
-        public bool verifyPassword(string password, string hashedPassword)
+        public bool VerifyPassword(UserModel user, string password, string hashedPassword)
         {
-            var res = _hasher.VerifyHashedPassword(null!, password, hashedPassword);
+            var res = _hasher.VerifyHashedPassword(user, hashedPassword, password);
             return res == PasswordVerificationResult.Success;
         }
     }

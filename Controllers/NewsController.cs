@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Studying.Repository.Interface;
 using Studying.Services;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 [ApiController]
 [Route("api/v1/[controller]")]
+[Authorize]
 public class NewsController : ControllerBase
 {
     private readonly NewsService _newsService;
@@ -40,6 +43,10 @@ public class NewsController : ControllerBase
     public async Task<ActionResult> GetByKeyword([FromRoute] string keyword)
     {
         var news = await _newsRepository.GetByKeyword(keyword);
+        if (news == null || news.Count == 0)
+        {
+            return NotFound($"Couldn't find news with 'keyword': {keyword}");
+        }
         return Ok(news);
     }
 
@@ -47,6 +54,10 @@ public class NewsController : ControllerBase
     public async Task<ActionResult> GetByLanguage([FromRoute] string language)
     {
         var news = await _newsRepository.GetByLanguage(language);
+        if (news == null || news.Count == 0)
+        {
+            return NotFound($"Couldn't find news with 'language': {language}");
+        }
         return Ok(news);
     }
 
@@ -54,6 +65,10 @@ public class NewsController : ControllerBase
     public async Task<ActionResult> GetByLangKey([FromRoute] string language, [FromRoute] string keyword)
     {
         var news = await _newsRepository.GetByLangKey(language, keyword);
+        if(news == null || news.Count == 0)
+        {
+            return NotFound($"Couldn't find news with 'keyword': {keyword} and 'language': {language}");
+        }
         return Ok(news);
     }
 }
