@@ -11,6 +11,7 @@ namespace Studying.Models
         [Column("id")]
         public int Id { get; set; }
 
+
         [Required]
         [MaxLength(50)]
         [Column("name")]

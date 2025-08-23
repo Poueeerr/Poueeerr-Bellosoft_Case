@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Studying.Context;
@@ -11,9 +12,11 @@ using Studying.Context;
 namespace Studying.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250823222058_fixingDate")]
+    partial class fixingDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,16 +38,6 @@ namespace Studying.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("description");
-
-                    b.Property<string>("Keyword")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("keyword");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("language");
 
                     b.Property<DateTime>("PublishedAt")
                         .HasColumnType("timestamp with time zone");

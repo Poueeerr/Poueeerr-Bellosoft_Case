@@ -1,10 +1,11 @@
+using DotNetEnv; 
 using Microsoft.EntityFrameworkCore;
 using Studying.Context;
 using Studying.Mapper;
 using Studying.Models;
+using Studying.Repository;
 using Studying.Repository.Interface;
 using Studying.Services;
-using DotNetEnv; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,8 +29,10 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 #region RegistrandoServiços
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<INewsRepository, NewsRepository>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<HasherService>();
+builder.Services.AddHttpClient<Studying.Services.NewsService>();
 #endregion
 
 var app = builder.Build();

@@ -8,7 +8,7 @@ namespace Studying.Context
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<UserModel> Users { get; set; }
-
+        public DbSet<NewsModel> News { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
