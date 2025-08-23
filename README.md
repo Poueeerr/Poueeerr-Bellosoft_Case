@@ -1,6 +1,7 @@
 Requisitos
 - PostgreSql
 - .NET 8.0
+- API KEY de https://gnews.io
   
 Criar .env na root
 ```bash
