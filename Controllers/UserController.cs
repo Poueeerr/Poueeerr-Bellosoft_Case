@@ -16,6 +16,9 @@ namespace Studying.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// Retorna todos os usuários cadastrados
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IList<UserDTO>>> GetAll()
         {
@@ -26,7 +29,7 @@ namespace Studying.Controllers
             }
             return Ok(users);
         }
-
+/*
         [HttpGet("userId/{id}")]
 
         public async Task<ActionResult<UserDTO>> GetById([FromRoute]int id)
@@ -38,7 +41,10 @@ namespace Studying.Controllers
             }
             return Ok(user);
         }
-
+*/
+        /// <summary>
+        /// Cadastra no banco de dados o usuário
+        /// </summary>
         [HttpPost("Register")]
         [AllowAnonymous]
         public async Task<ActionResult<UserDTO>> Insert([FromBody] UserModelViewDTO dto)
@@ -51,7 +57,7 @@ namespace Studying.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("id/{id}")]
+/*        [HttpDelete("id/{id}")]
         public async Task<ActionResult<bool>> Delete([FromRoute] int id)
         {
             var response = await _userService.Delete(id);
@@ -61,7 +67,10 @@ namespace Studying.Controllers
             }
             return Ok("Usuário deletado com sucesso");
         }
-
+*/
+        /// <summary>
+        /// Realiza login e retorna token de autenticação
+        /// </summary>
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<ActionResult> Login([FromBody] LoginView model)

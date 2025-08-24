@@ -18,6 +18,11 @@ public class NewsController : ControllerBase
         _newsRepository = newsRepository;
     }
 
+    /// <summary>
+    ///  Busca na API externa notícias a partir de uma palavra chave e linguagem
+    /// </summary>
+    /// <param name="keyword">Ex: Google, Jogos</param>
+    /// <param name="language">Ex: pt, en, es</param>
     [HttpGet("fetch/{keyword}/lang/{language}")]
     public async Task<IActionResult> SyncNews([FromRoute] string keyword, [FromRoute] string language)
     {
@@ -32,6 +37,10 @@ public class NewsController : ControllerBase
         return NotFound("Nenhuma notícia encontrada.");
     }
 
+    /// <summary>
+    ///  Busca no banco de dados todas as notícias
+    /// </summary>
+
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -39,6 +48,10 @@ public class NewsController : ControllerBase
         return Ok(news);
     }
 
+    /// <summary>
+    /// Busca no banco de dados todos os registros a partir de uma palavra chave
+    /// </summary>
+    /// <param name="keyword">Ex: Google, jogos</param>
     [HttpGet("getby/keyword/{keyword}")]
     public async Task<ActionResult> GetByKeyword([FromRoute] string keyword)
     {
@@ -50,6 +63,11 @@ public class NewsController : ControllerBase
         return Ok(news);
     }
 
+    /// <summary>
+    /// Busca no banco de dados todos os registros a partir de uma linguagem 
+    /// </summary>
+    /// <param name="language">Ex: pt, en, es</param>
+    /// <returns></returns>
     [HttpGet("getby/language/{language}")]
     public async Task<ActionResult> GetByLanguage([FromRoute] string language)
     {
@@ -61,6 +79,12 @@ public class NewsController : ControllerBase
         return Ok(news);
     }
 
+    /// <summary>
+    /// Busca no banco de dados todos os registros a partir de uma palavra chave e uma linguagem 
+    /// </summary>
+    /// <param name="language">Ex: pt, en, es</param>
+    /// <param name="keyword">Ex: Google, Jogos</param>
+    /// <returns></returns>
     [HttpGet("getby/keyword/{keyword}/language/{language}")]
     public async Task<ActionResult> GetByLangKey([FromRoute] string language, [FromRoute] string keyword)
     {
