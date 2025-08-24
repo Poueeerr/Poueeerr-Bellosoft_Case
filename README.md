@@ -4,7 +4,7 @@
 The system fetches distinct news articles from an external API based on a keyword and language, persisting the data in the database.
 It also provides routes to query the database for stored news, and includes a user registration and login system with JWT authentication.
 
-## Requisitos
+## Requirements
 - .NET 8.0 installed
 - PostgreSQL installed and running (default port 5432)
 - API KEY from https://gnews.io
